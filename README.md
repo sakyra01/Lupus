@@ -5,47 +5,46 @@
 
 [![Go version](https://img.shields.io/badge/Go-1.21.3%2B-blue)](https://golang.org/dl/)
 
-**Структура** 📄
-
-[[_TOC_]]
-
 # Description
-Lupus это небольшой фреймворк для Yandex360 который представлен в бинарном формате.
+Lupus is a small platformer for Yandex360, presented in binary format.
 
-Основные функции: 
+Main functions:
 
-    * Логирование всех событий связанных с работой документов
-    * Уведомление о критических событиях
-    * Создание файлов для хранения информации до 6 месяцев
-    * Формат данных - json и CEF syslog
-    * Уведомление о новых типов ивентов которые могут впоследствии появиться
-    * Lupus собирает события за последний час, поэтмоу необходимо настроить время на ос так же как и на Yandex360
+      * Logging of all events related to the work of documents
+      * Notification of critical events
+      * Create files to store information for up to 6 months
+      * Data format - json and CEF syslog
+      * Notification of new types of events that may subsequently appear
+      * Lupus collects events for the last hour, so you need to set the time on the OS in the same way as on Yandex360
+
 
 ![lupus.png](images/lupus.png)
 
 # How to work
----Необходимо выбрать бинарный файл для операционной системы на которой вы будете его запускать(бинарники лежат в папке cmd)---
+---You need to select a binary file for the operating system on which you will run it (the binaries are in the cmd folder)---
 
-1. Для правильной логике работы, необхимо создать любую дирректорию где вы будете проводить запуск фреймворка и переместить туда бинарник
-2. Создать директории logs, syslog и скрытый файл с кредами для успешной работы .env
-3. Дать системные права на вызов этого бинарного файла
+1. For the correct logic of work, it is necessary to create any directory where you will launch the framework and move the binary there
+2. Create directories logs, syslog and a hidden file with credentials for successful operation of .env
+3. Give system rights to call this binary file
 
-Пример организации на Linux
+Example of organization on Linux
 
 ```console
-sudo timedatectl set-timezone Europe/Moscow
+sudo timedatectl set-timezone <(Continent)/(City)>
 mkdir -p programs/{logs,syslogs} && touch programs/.env
 cd programs
 chmod +x lupus
 ```
 
-!!! Для работы с фреймворком досточно скачать себе толкьо бинарник, но нужно будет заполнить файл .env своими кредами, пример находится в файле .env_example
-!!! У Lupus есть возможность отправлять уведомления в Telegram, для этого нужно добавить флаг (-r/--report)
-    Пример: ./lupus --report
+!!! To work with the framework, you just need to download the binary, but you will need to fill the .env file with your credentials, the example is in the .env_example file
+
+!!! Lupus has the ability to send notifications to Telegram, to do this you need to add a flag (-r/--report)
+
+    Example: ./lupus --report
 
 ## Crontab
 
-Запись на запуск фреймворка каждый час
+Sign up to run the framework every hour
 
 ```console
 0 * * * * cd ~/programs && ./lupus --report
