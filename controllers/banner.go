@@ -25,11 +25,15 @@ Framework for collecting logs about user actions on Yandex360 disk
                             |                                        .:::::5.            ?
                             |                                              !^     ...  .~:
                            / \                                              :~^^^^^.::::
-                                          Version 1.7
+                                          Version 2.0
+`
 
+	OutBanner := `
 ----The goal is to find users who download documents locally or try to share them with someone---------
-
+	Use flag (-r/--report) to activate notification about alerts on telegram
+	Example: ~$ ./lupus --report  
 `
 	fmt.Printf(PreBanner)
 	fmt.Printf("\x1b[94m%s\x1b[0m", banner)
+	fmt.Printf(OutBanner)
 }
